@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inquiry Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <div class="admin-head">
+        <div>
+          <p class="eyebrow">Inquiry Inbox</p>
+          <h1>Meihua Lead Follow-Up</h1>
+        </div>
+        <div class="admin-actions">
+          <a class="button light" href="/">Website</a>
+          {% if authorized %}
+            <a class="button secondary-button" href="{{ url_for('export_inquiries', kind='xlsx', password=password) }}">Export Excel</a>
+            <a class="button secondary-button" href="{{ url_for('export_inquiries', kind='csv', password=password) }}">Export CSV</a>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if not authorized %}
+        <section class="admin-login">
+          <h2>Admin Password Required</h2>
+          <form method="get">
+            <label>Password <input name="password" type="password" required></label>
+            <button class="button primary" type="submit">View Inquiries</button>
+          </form>
+        </section>
+      {% else %}
+        <section class="admin-summary">
+          <div><strong>{{ inquiries|length }}</strong><span>Visible inquiries</span></div>
+          <div><strong>{{ status_filter or 'All' }}</strong><span>Current filter</span></div>
+          <div><strong>CRM</strong><span>Status, notes and follow-up dates</span></div>
+        </section>
+
+        <nav class="admin-filters" aria-label="Inquiry filters">
+          <a class="{{ 'active' if not status_filter else '' }}" href="{{ url_for('admin', password=password) }}">All</a>
+          {% for status in statuses %}
+            <a class="{{ 'active' if status_filter == status else '' }}" href="{{ url_for('admin', password=password, status=status) }}">{{ status }}</a>
+          {% endfor %}
+        </nav>
+
+        <section class="admin-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Contact</th>
+                <th>Company</th>
+                <th>Requirement</th>
+                <th>Follow Up</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for inquiry in inquiries %}
+                <tr>
+                  <td>
+                    <span>{{ inquiry.created_at }}</span>
+                    <span>Updated: {{ inquiry.last_updated }}</span>
+                  </td>
+                  <td>
+                    <span class="status-pill status-{{ inquiry.status|lower|replace(' ', '-') }}">{{ inquiry.status }}</span>
+                  </td>
+                  <td>
+                    <strong>{{ inquiry.name }}</strong>
+                    <span>{{ inquiry.email }}</span>
+                    <span>{{ inquiry.phone }}</span>
+                    <div class="quick-links">
+                      <a href="mailto:{{ inquiry.email }}?subject=Re:%20Your%20Meihua%20Musical%20Instruments%20Inquiry">Email</a>
+                      {% if inquiry.phone %}
+                        <a href="https://wa.me/{{ inquiry.phone|replace(' ', '')|replace('+', '')|replace('-', '') }}" target="_blank" rel="noreferrer">WhatsApp</a>
+                      {% endif %}
+                    </div>
+                  </td>
+                  <td>
+                    <strong>{{ inquiry.company }}</strong>
+                    <span>{{ inquiry.country }}</span>
+                  </td>
+                  <td>
+                    <strong>{{ inquiry.product_interest }}</strong>
+                    <span>{{ inquiry.body_type }}</span>
+                    <span>Qty: {{ inquiry.quantity }}</span>
+                    <span>Target: {{ inquiry.target_price }}</span>
+                    <p>{{ inquiry.message }}</p>
+                  </td>
+                  <td>
+                    <form class="follow-form" method="post" action="{{ url_for('update_inquiry', inquiry_id_value=inquiry.id) }}">
+                      <input type="hidden" name="password" value="{{ password }}">
+                      <input type="hidden" name="status_filter" value="{{ status_filter }}">
+                      <label>Status
+                        <select name="status">
+                          {% for status in statuses %}
+                            <option value="{{ status }}" {{ 'selected' if inquiry.status == status else '' }}>{{ status }}</option>
+                          {% endfor %}
+                        </select>
+                      </label>
+                      <label>Next Follow-Up
+                        <input name="next_follow_up" type="date" value="{{ inquiry.next_follow_up }}">
+                      </label>
+                      <label>Notes
+                        <textarea name="notes" placeholder="Quote, sample progress, buyer preference...">{{ inquiry.notes }}</textarea>
+                      </label>
+                      <button class="button primary" type="submit">Save</button>
+                    </form>
+                  </td>
+                  <td>
+                    <div class="action-stack">
+                      <a class="button secondary-button" href="mailto:{{ inquiry.email }}?subject=Meihua%20Musical%20Instruments%20Quotation&body=Hello%20{{ inquiry.name }},%0A%0AThank%20you%20for%20your%20inquiry.%20We%20are%20reviewing%20your%20requirements%20and%20will%20prepare%20details%20for%20you.%0A%0ABest%20regards,%0AMeihua%20Musical%20Instruments">Reply</a>
+                      {% if inquiry.next_follow_up %}
+                        <span>Next: {{ inquiry.next_follow_up }}</span>
+                      {% else %}
+                        <span>No date set</span>
+                      {% endif %}
+                    </div>
+                  </td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td class="empty" colspan="7">No inquiries yet.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      {% endif %}
+    </main>
+  </body>
+</html>

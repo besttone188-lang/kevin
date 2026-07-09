@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meihua Musical Instruments | OEM Guitar & Ukulele Factory</title>
+    <meta name="description" content="Meihua Musical Instruments manufactures acoustic guitars, electric guitars and ukuleles from a 40,000-square-meter facility with OEM/ODM customization and quality control.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body data-lang="en">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Meihua Musical Instruments home">
+        <span class="brand-mark">MH</span>
+        <span>Meihua Musical Instruments</span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#products">Products</a>
+        <a href="#oem">OEM/ODM</a>
+        <a href="#about">Factory</a>
+        <a href="#factory">Capability</a>
+        <a href="#order">Order Info</a>
+        <a href="#inquiry">Inquiry</a>
+      </nav>
+      <div class="language-switch" aria-label="Language">
+        <button class="active" type="button" data-language="en">EN</button>
+        <button type="button" data-language="zh">中文</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img src="{{ url_for('static', filename='images/hero-workshop.png') }}" alt="Electric guitar, acoustic guitar and ukulele in a guitar factory workshop">
+        <div class="hero-overlay">
+          <p class="eyebrow">Meihua Musical Instruments</p>
+          <h1>Professional OEM Services for Global Musical Instrument Brands</h1>
+          <p class="hero-copy">With 18 years of OEM manufacturing experience, Meihua Musical Instruments is located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base, providing acoustic guitar, electric guitar and ukulele manufacturing services for overseas brands.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#inquiry">Send Inquiry</a>
+            <a class="button light" href="#products">View Product Lines</a>
+          </div>
+          <div class="hero-points" aria-label="Factory strengths">
+            <span>18 Years OEM Experience</span>
+            <span>40,000㎡ Facility</span>
+            <span>Zheng'an County, Guizhou Province</span>
+            <span>OEM / ODM Customization</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-label="Factory highlights">
+        <div>
+          <strong>18 Years OEM Experience</strong>
+          <span>Long-term production support for overseas guitar and ukulele brand orders</span>
+        </div>
+        <div>
+          <strong>Zheng'an County, Guizhou Province</strong>
+          <span>Located in the world's largest musical instrument production base</span>
+        </div>
+        <div>
+          <strong>OEM / ODM Service</strong>
+          <span>Body shapes, wood species, hardware, pickups, electronics and packaging</span>
+        </div>
+      </section>
+
+      <section id="products" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Product Lines</p>
+          <h2>Core Products</h2>
+        </div>
+        <div class="product-grid">
+          {% for line in product_lines %}
+            <article class="product-card">
+              <img class="product-photo" src="{{ url_for('static', filename=line.image) }}" alt="{{ line.name }} OEM product options">
+              <div class="product-body">
+                <h3>{{ line.name }}</h3>
+                <p>{{ line.description }}</p>
+                <div class="tag-list">
+                  {% for type in line.types %}
+                    <span>{{ type }}</span>
+                  {% endfor %}
+                </div>
+                <ul>
+                  {% for option in line.options %}
+                    <li>{{ option }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section product-specs-section">
+        <div class="section-head">
+          <p class="eyebrow">Product Parameters</p>
+          <h2>Common Custom Options for Guitar Buyers</h2>
+        </div>
+        <div class="spec-grid">
+          <article>
+            <h3>Acoustic Guitars</h3>
+            <dl>
+              <div><dt>Body Shapes</dt><dd>Dreadnought, OM, GA, Jumbo, Parlor, cutaway or non-cutaway</dd></div>
+              <div><dt>Wood Options</dt><dd>Spruce, cedar, mahogany, sapele, basswood and buyer-specified materials</dd></div>
+              <div><dt>Customization</dt><dd>Rosette, binding, bridge, pickup, finish, headstock logo and label</dd></div>
+              <div><dt>Packaging</dt><dd>Inner bag, color box, export carton, accessory bundle and private-label packing</dd></div>
+            </dl>
+          </article>
+          <article>
+            <h3>Electric Guitars</h3>
+            <dl>
+              <div><dt>Body Shapes</dt><dd>ST, TL, LP, SG, Offset, semi-hollow, bass and custom body options</dd></div>
+              <div><dt>Electronics</dt><dd>SSS, HSS, HH, active or passive pickups, buyer-specified wiring options</dd></div>
+              <div><dt>Hardware</dt><dd>Bridge, tuners, knobs, pickguard, frets, neck profile and finish options</dd></div>
+              <div><dt>Branding</dt><dd>Headstock logo, neck plate, carton mark, hangtag and retail package design</dd></div>
+            </dl>
+          </article>
+          <article>
+            <h3>Ukuleles</h3>
+            <dl>
+              <div><dt>Sizes</dt><dd>21-inch, 23-inch and 26-inch</dd></div>
+              <div><dt>Materials</dt><dd>Sapele, mahogany, acacia, spruce and color-finish options</dd></div>
+              <div><dt>Use Cases</dt><dd>Education, promotion, retail, beginner packages and gift orders</dd></div>
+              <div><dt>Packages</dt><dd>Bag, strap, tuner, strings, color box, bulk carton or custom bundle</dd></div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div class="section-head">
+          <p class="eyebrow">About Us</p>
+          <h2>Meihua Musical Instruments</h2>
+        </div>
+        <div class="about-layout">
+          <div class="about-copy">
+            <p>Meihua Musical Instruments is a professional musical instrument factory located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base. With 18 years of OEM manufacturing experience, we focus on acoustic guitars, electric guitars and ukuleles for overseas distributors, brand owners, online sellers, education suppliers and retail channels.</p>
+            <p>Our factory supports OEM and ODM service for body shapes, wood species, hardware finishes, pickups, electronics, custom packaging and private-label requirements. Buyers can start from an existing model, a reference sample, a photo, a drawing or a specification sheet.</p>
+            <p>For every new project, our sales and production team reviews the target market, expected quantity, target price, package requirement and delivery schedule before confirming a workable sample plan.</p>
+          </div>
+          <div class="about-stats" aria-label="Factory strengths">
+            <div><strong>18</strong><span>Years of OEM manufacturing experience</span></div>
+            <div><strong>40,000㎡</strong><span>State-of-the-art manufacturing campus</span></div>
+            <div><strong>正安县</strong><span>Guizhou Province, the world's largest musical instrument production base</span></div>
+            <div><strong>3</strong><span>Acoustic guitars, electric guitars and ukuleles</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section facility-section">
+        <div class="section-head">
+          <p class="eyebrow">Our Facility</p>
+          <h2>Purpose-Built for Instrument Manufacturing</h2>
+        </div>
+        <div class="facility-grid">
+          <article><strong>Dedicated Assembly Lines</strong><span>Separate production flows for acoustic guitars, electric guitars and ukuleles.</span></article>
+          <article><strong>Wood Processing</strong><span>Advanced wood processing, drying and aging workshops for stable instrument materials.</span></article>
+          <article><strong>Controlled Workshops</strong><span>Climate-controlled gluing, sanding and finishing zones for consistent production.</span></article>
+          <article><strong>Electronics Testing</strong><span>Electronics installation and testing stations for electric guitar orders.</span></article>
+          <article><strong>Quality Labs</strong><span>Rigorous quality control labs for inspection, setup and performance checks.</span></article>
+          <article><strong>Warehouse Capacity</strong><span>Large-capacity raw material and finished goods warehouses for stable supply.</span></article>
+        </div>
+      </section>
+
+      <section class="section video-section">
+        <div class="section-head section-head-row">
+          <div>
+            <p class="eyebrow">Factory Video</p>
+            <h2>Inside Meihua Musical Instruments</h2>
+          </div>
+          <a class="button secondary-button" href="#inquiry">Discuss Your Order</a>
+        </div>
+        <div class="video-layout">
+          <video class="factory-video" controls preload="metadata" poster="{{ url_for('static', filename='images/factory-video-poster.png') }}">
+            <source src="{{ url_for('static', filename='videos/factory.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-copy">
+            <h3>Factory Production Overview</h3>
+            <p>Watch our workshop environment, production flow, material handling and packing preparation. This video helps buyers understand our manufacturing setting before discussing samples, customization and bulk orders.</p>
+            <ul>
+              <li>Workshop and production environment</li>
+              <li>Instrument assembly, inspection and handling</li>
+              <li>Packing preparation for export orders</li>
+              <li>Useful reference for OEM/ODM buyers before placing sample orders</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="oem" class="section band">
+        <div class="split">
+          <div>
+            <p class="eyebrow">OEM / ODM Service</p>
+            <h2>Customization Process from Brief to Repeat Order</h2>
+          </div>
+          <div class="service-grid">
+            <article>
+              <strong>1. Product Brief</strong>
+              <span>Share body shape, target market, specs, quantity and price range.</span>
+            </article>
+            <article>
+              <strong>2. Solution Review</strong>
+              <span>Confirm wood species, hardware finishes, pickups, electronics, packaging, cost target and sample direction.</span>
+            </article>
+            <article>
+              <strong>3. Sample Build</strong>
+              <span>Develop sample guitars or ukuleles with selected materials, logo and configuration.</span>
+            </article>
+            <article>
+              <strong>4. Bulk Production</strong>
+              <span>Arrange material preparation, production schedule and in-process quality checks.</span>
+            </article>
+            <article>
+              <strong>5. Final QC</strong>
+              <span>Inspect appearance, neck fit, fretwork, electronics, setup and packing details.</span>
+            </article>
+            <article>
+              <strong>6. Shipment Support</strong>
+              <span>Prepare export packing, commercial documents and follow-up support for repeat orders.</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="factory" class="section factory-section">
+        <div class="section-head">
+          <p class="eyebrow">Factory Capability</p>
+          <h2>Production Capacity and Quality</h2>
+        </div>
+        <div class="factory-layout">
+          <div class="capability-list">
+            <div><strong>Monthly volume production</strong><span>Streamlined workflows support 20,000-30,000 guitars per month while maintaining consistent quality.</span></div>
+            <div><strong>Skilled production team</strong><span>Skilled luthiers and trained assembly technicians handle key production and setup steps.</span></div>
+            <div><strong>Playability tests</strong><span>Final checks cover intonation, hardware, electronics and overall playability.</span></div>
+            <div><strong>Wood stability</strong><span>Environmentally controlled storage helps preserve material and finished goods stability.</span></div>
+          </div>
+          <div class="spec-panel">
+            <h3>Typical Custom Options</h3>
+            <dl>
+              <div><dt>Body</dt><dd>Acoustic, electric and ukulele body shapes based on buyer requirements</dd></div>
+              <div><dt>Materials</dt><dd>Wood species selected by product level, tone target and market positioning</dd></div>
+              <div><dt>Hardware</dt><dd>Hardware finishes, pickups, electronics and setup requirements</dd></div>
+              <div><dt>Branding</dt><dd>Custom logo, packaging, carton, hangtag and accessory set</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="section qc-section">
+        <div class="section-head">
+          <p class="eyebrow">Quality Control</p>
+          <h2>Inspection Points Before Shipment</h2>
+        </div>
+        <div class="qc-grid">
+          <article><strong>Material Check</strong><span>Wood stability, moisture condition, visible defects and key component matching are reviewed before production.</span></article>
+          <article><strong>Structure Check</strong><span>Neck joint, bridge position, body assembly, fretwork and hardware installation are checked during production.</span></article>
+          <article><strong>Playability Setup</strong><span>String height, intonation, fret buzz, neck relief and tuning stability are adjusted before packing.</span></article>
+          <article><strong>Electronics Test</strong><span>Electric guitars and pickup-equipped acoustic guitars are tested for output, noise, switching and control response.</span></article>
+          <article><strong>Appearance Review</strong><span>Finish, color, logo placement, binding, rosette, scratches and visible surface details are inspected.</span></article>
+          <article><strong>Packing Check</strong><span>Accessories, labels, cartons, protection material and shipping marks are checked according to buyer requirements.</span></article>
+        </div>
+      </section>
+
+      <section class="section advantage-section">
+        <div class="section-head">
+          <p class="eyebrow">Why Work With Us</p>
+          <h2>Why Choose Meihua Musical Instruments</h2>
+        </div>
+        <div class="advantage-grid">
+          <article>
+            <span>01</span>
+            <strong>Customization</strong>
+            <p>OEM/ODM support for body shapes, wood species, hardware finishes, pickups, electronics and packaging.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>Competitive Pricing</strong>
+            <p>Vertical integration helps reduce cost without cutting corners on tone or craftsmanship.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>Stable Supply</strong>
+            <p>The 40,000㎡ facility supports ample inventory planning, reliable logistics and on-time delivery.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>Sustainable Practices</strong>
+            <p>Certified tonewoods and eco-friendly finishes are used whenever possible.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="order" class="section order-section">
+        <div class="section-head">
+          <p class="eyebrow">Order Information</p>
+          <h2>Clear Starting Points for Sample and Bulk Orders</h2>
+        </div>
+        <div class="order-grid">
+          <article>
+            <strong>Sample Development</strong>
+            <span>Reference sample, drawing, photo or specification sheet accepted. Sample details can include body shape, wood species, hardware, pickups, electronics, logo, packaging and finish.</span>
+          </article>
+          <article>
+            <strong>MOQ Guide</strong>
+            <span>MOQ depends on product category, configuration, finish, packaging and customization requirements. As a guide, buyers can start with trial orders and confirm exact MOQ after specifications are reviewed.</span>
+          </article>
+          <article>
+            <strong>Lead Time</strong>
+            <span>Sample lead time is usually confirmed after specifications are fixed. Bulk production schedules depend on material preparation, customization complexity and order quantity.</span>
+          </article>
+          <article>
+            <strong>Export Support</strong>
+            <span>Private-label cartons, accessory bundles, packing list, commercial invoice and shipment coordination can be prepared for B2B orders.</span>
+          </article>
+        </div>
+        <div class="order-note">
+          <strong>Before Quotation</strong>
+          <span>Please send product category, body shape, wood or material level, hardware/electronics requirement, logo and package details, order quantity, target price and delivery destination. Clear information helps us quote faster and avoid wrong sample direction.</span>
+        </div>
+      </section>
+
+      <section id="inquiry" class="section inquiry-section">
+        <div class="section-head">
+          <p class="eyebrow">Request a Quote</p>
+          <h2>Tell Us About Your Purchasing Needs</h2>
+        </div>
+        <div class="inquiry-layout">
+          <form class="inquiry-form" data-inquiry-form>
+            <div class="field-grid">
+              <label>Name <input name="name" required autocomplete="name"></label>
+              <label>Email <input name="email" type="email" required autocomplete="email"></label>
+              <label>Company <input name="company" required autocomplete="organization"></label>
+              <label>Country <input name="country" autocomplete="country-name"></label>
+              <label>Phone / WhatsApp <input name="phone" autocomplete="tel"></label>
+              <label>Body Type / Model
+                <input name="body_type" list="body-type-options" placeholder="ST, TL, LP, Dreadnought, OM, 21寸...">
+                <datalist id="body-type-options">
+                  <option value="ST Electric Guitar"></option>
+                  <option value="TL Electric Guitar"></option>
+                  <option value="LP Electric Guitar"></option>
+                  <option value="Dreadnought Acoustic Guitar"></option>
+                  <option value="OM Acoustic Guitar"></option>
+                  <option value="GA Acoustic Guitar"></option>
+                  <option value="21寸 Ukulele"></option>
+                  <option value="23寸 Ukulele"></option>
+                  <option value="26寸 Ukulele"></option>
+                </datalist>
+              </label>
+              <fieldset class="product-choice-field">
+                <legend>Product Interest</legend>
+                <div class="product-choice-grid">
+                  {% for line in product_lines %}
+                    <label class="product-choice">
+                      <input name="product_interest" type="radio" value="{{ line.name }}" required>
+                      <img src="{{ url_for('static', filename=line.image) }}" alt="{{ line.name }} product photo">
+                      <span>{{ line.name }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
+              </fieldset>
+              <label>Estimated Quantity <input name="quantity" placeholder="Example: 100 pcs"></label>
+              <label>Target Price <input name="target_price" placeholder="Optional"></label>
+            </div>
+            <label class="message-label">Project Details
+              <textarea name="message" required placeholder="Please share product type, body shape, wood, hardware, color, logo, packaging, quantity, target price and delivery requirements."></textarea>
+            </label>
+            <div class="form-footer">
+              <p data-form-status></p>
+              <button class="button primary" type="submit">Submit Inquiry</button>
+            </div>
+          </form>
+          <aside class="quote-guide">
+            <h3>What to Include</h3>
+            <ul>
+              <li>Product category and body shape</li>
+              <li>Wood, finish, hardware and electronics</li>
+              <li>Logo, carton, accessories and packaging</li>
+              <li>Order quantity, target price and delivery date</li>
+            </ul>
+            <div class="contact-card">
+              <strong>Sales Contact</strong>
+              <span>Email: besttone188@gmail.com</span>
+              <span>QQ: 1457167142@qq.com</span>
+              <span>Company: Meihua Musical Instruments</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Meihua Musical Instruments</strong>
+        <span>Partner with Meihua Musical Instruments to bring exceptional guitars and ukuleles to your market.</span>
+      </div>
+      <a href="mailto:besttone188@gmail.com">besttone188@gmail.com</a>
+    </footer>
+
+    <script>
+      const form = document.querySelector("[data-inquiry-form]");
+      const statusNode = document.querySelector("[data-form-status]");
+      const languageButtons = document.querySelectorAll("[data-language]");
+      const originalText = new WeakMap();
+      const translations = {
+        "Products": "产品",
+        "OEM/ODM": "OEM/ODM",
+        "Factory": "工厂",
+        "Capability": "能力",
+        "Order Info": "订单信息",
+        "Inquiry": "询盘",
+        "Meihua Musical Instruments": "美华乐器",
+        "Professional OEM Services for Global Musical Instrument Brands": "为全球乐器品牌提供专业的代工服务",
+        "With 18 years of OEM manufacturing experience, Meihua Musical Instruments is located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base, providing acoustic guitar, electric guitar and ukulele manufacturing services for overseas brands.": "美华乐器拥有18年代工经验，位于贵州省正安县——全球最大的乐器生产基地，为海外品牌提供木吉他、电吉他和尤克里里代工服务。",
+        "Send Inquiry": "发送询盘",
+        "View Product Lines": "查看产品线",
+        "18 Years OEM Experience": "18年代工经验",
+        "40,000㎡ Facility": "40,000㎡ 工厂",
+        "Zheng'an County, Guizhou Province": "贵州省正安县",
+        "OEM / ODM Customization": "OEM / ODM 定制",
+        "Monthly Volume Production": "月度批量生产",
+        "Long-term production support for overseas guitar and ukulele brand orders": "长期服务海外吉他和尤克里里品牌代工订单",
+        "Located in the world's largest musical instrument production base": "位于全球最大的乐器生产基地贵州省正安县",
+        "Purpose-built workshops for acoustic guitars, electric guitars and ukuleles": "为木吉他、电吉他和尤克里里生产而建设的专业车间",
+        "OEM / ODM Service": "OEM / ODM 项目",
+        "Body shapes, wood species, hardware, pickups, electronics and packaging": "琴型、木材、五金、拾音器、电子配置和包装定制",
+        "Quality Control": "质量控制",
+        "In-process inspections, playability tests, intonation and electronics checks": "过程检验、手感测试、音准检查和电子测试",
+        "Product Lines": "产品线",
+        "Core Products": "核心乐器产品",
+        "Electric Guitars": "电吉他",
+        "Acoustic Guitars": "木吉他",
+        "Ukuleles": "尤克里里",
+        "Solid and semi-hollow electric guitars with precision pickups and electronics for rock, blues, jazz, metal and custom brand orders.": "提供实心和半空心电吉他，配置精准拾音器和电子系统，适合摇滚、布鲁斯、爵士、金属及品牌定制订单。",
+        "Acoustic guitars from dreadnoughts to concert and parlor models, designed for warm tone, reliable durability and B2B supply.": "提供从 Dreadnought 到 Concert、Parlor 等多种木吉他琴型，兼顾温暖音色、可靠耐用性和 B2B 稳定供货。",
+        "21-inch, 23-inch and 26-inch ukuleles in traditional and contemporary designs, lightweight, bright and fun to play.": "提供 21寸、23寸、26寸尤克里里，涵盖传统与现代设计，轻便、明亮、易于演奏。",
+        "Solid or semi-hollow body construction": "实心或半空心琴体结构",
+        "Pickup, electronics and hardware configuration": "拾音器、电子和五金配置",
+        "ST, TL, LP, SG, Offset and bass models": "ST、TL、LP、SG、Offset 和贝斯琴型",
+        "Gloss, matte, metallic and custom finishes": "亮光、哑光、金属色和定制漆面",
+        "Dreadnought, OM, GA, Jumbo and Parlor bodies": "Dreadnought、OM、GA、Jumbo 和 Parlor 琴型",
+        "Traditional and modern acoustic designs": "传统和现代木吉他设计",
+        "Cutaway and non-cutaway options": "缺角和非缺角选择",
+        "Binding, rosette, pickup and finish customization": "包边、音孔花、拾音器和漆面定制",
+        "21-inch, 23-inch and 26-inch sizes": "21寸、23寸、26寸尺寸",
+        "Traditional or contemporary styling": "传统或现代风格",
+        "Logo, color and accessory bundle options": "Logo、颜色和配件套装选项",
+        "Retail box or bulk carton packing": "零售彩盒或批量外箱包装",
+                "Start a Custom Request": "开始定制询盘",
+        "Electric Guitar Bodies": "电吉他琴型",
+        "Acoustic Guitar Bodies": "木吉他琴型",
+        "Ukulele Sizes": "尤克里里尺寸",
+        "Pickup route, bridge, neck profile, finish, relic level and private-label packing can be matched to your market position.": "拾音器开槽、琴桥、琴颈手感、漆面、做旧程度和品牌包装都可根据市场定位匹配。",
+        "Laminate, solid-top, cutaway, pickup, binding, rosette and finish options are available for entry through upgraded lines.": "可提供合板、单板、缺角、拾音器、包边、音孔花和不同漆面，覆盖入门到升级产品线。",
+        "Color, wood, logo, accessory bundles and carton options can be developed for promotional, education and retail channels.": "可为促销、教育和零售渠道开发颜色、木材、Logo、配件套装和包装方案。",
+        "About Us": "关于我们",
+        "Meihua Musical Instruments is a professional manufacturer dedicated to crafting high-quality acoustic guitars, electric guitars, and ukuleles. Operating from a state-of-the-art 40,000-square-meter facility, we combine traditional luthier expertise with modern, efficient production to serve musicians, educators, and brands around the world.": "美华乐器是一家专业乐器制造商，专注于生产高品质木吉他、电吉他和尤克里里。我们拥有 40,000 平方米现代化厂区，将传统制琴工艺与高效生产体系结合，服务全球音乐人、教育机构和品牌客户。",
+        "Our factory supports OEM and ODM service for body shapes, wood species, hardware finishes, pickups, electronics, custom packaging and private-label requirements.": "工厂支持 OEM/ODM 定制，包括琴型、木材、五金表面、拾音器、电子配置、定制包装和贴牌需求。",
+        "State-of-the-art manufacturing campus": "现代化制造园区",
+        "Acoustic guitars, electric guitars and ukuleles": "木吉他、电吉他和尤克里里",
+        "In-process inspection and final playability testing": "过程检验与最终演奏手感测试",
+        "Our Facility": "工厂设施",
+        "Purpose-Built for Instrument Manufacturing": "为乐器制造而建设",
+        "Dedicated Assembly Lines": "专用装配线",
+        "Separate production flows for acoustic guitars, electric guitars and ukuleles.": "木吉他、电吉他和尤克里里拥有独立生产流程。",
+        "Wood Processing": "木材处理",
+        "Advanced wood processing, drying and aging workshops for stable instrument materials.": "配备木材加工、干燥和养生车间，保障材料稳定。",
+        "Controlled Workshops": "恒温控制车间",
+        "Climate-controlled gluing, sanding and finishing zones for consistent production.": "胶合、打磨和喷涂区域进行环境控制，保障生产一致性。",
+        "Electronics Testing": "电子测试",
+        "Electronics installation and testing stations for electric guitar orders.": "为电吉他订单配置电子安装和测试工位。",
+        "Quality Labs": "质检实验室",
+        "Rigorous quality control labs for inspection, setup and performance checks.": "严格的质检区域用于外观、设置和性能检查。",
+        "Warehouse Capacity": "仓储能力",
+        "Large-capacity raw material and finished goods warehouses for stable supply.": "大容量原材料和成品仓库支持稳定供货。",
+        "OEM / ODM Service": "OEM / ODM 服务",
+        "Customization Process from Brief to Repeat Order": "从需求到复购的定制流程",
+        "1. Product Brief": "1. 产品需求",
+        "Share body shape, target market, specs, quantity and price range.": "提供琴型、目标市场、配置、数量和价格范围。",
+        "2. Solution Review": "2. 方案确认",
+        "Confirm wood species, hardware finishes, pickups, electronics, packaging, cost target and sample direction.": "确认木材、五金、拾音器、电子配置、包装、成本目标和样品方向。",
+        "3. Sample Build": "3. 样品制作",
+        "Develop sample guitars or ukuleles with selected materials, logo and configuration.": "按确认的材料、Logo 和配置制作吉他或尤克里里样品。",
+        "4. Bulk Production": "4. 批量生产",
+        "Arrange material preparation, production schedule and in-process quality checks.": "安排备料、生产排期和过程质检。",
+        "5. Final QC": "5. 最终质检",
+        "Inspect appearance, neck fit, fretwork, electronics, setup and packing details.": "检查外观、琴颈装配、品丝、电子、调试和包装细节。",
+        "6. Shipment Support": "6. 出货支持",
+        "Prepare export packing, commercial documents and follow-up support for repeat orders.": "准备出口包装、商业文件并支持后续复购。",
+        "Factory Capability": "工厂能力",
+        "Production Capacity and Quality": "产能与质量",
+        "Monthly volume production": "月度批量生产",
+        "Streamlined workflows support 20,000-30,000 guitars per month while maintaining consistent quality.": "成熟生产流程支持每月生产2-3万只吉他，同时保持稳定品质。",
+        "Skilled production team": "熟练生产团队",
+        "Skilled luthiers and trained assembly technicians handle key production and setup steps.": "熟练制琴师和装配技师负责关键生产与调试环节。",
+        "Playability tests": "演奏测试",
+        "Final checks cover intonation, hardware, electronics and overall playability.": "最终检查覆盖音准、五金、电子和整体演奏手感。",
+        "Wood stability": "木材稳定性",
+        "Environmentally controlled storage helps preserve material and finished goods stability.": "环境控制仓储帮助保持材料和成品稳定。",
+        "Typical Custom Options": "常见定制选项",
+        "Body": "琴体",
+        "Acoustic, electric and ukulele body shapes based on buyer requirements": "根据客户需求选择木吉他、电吉他和尤克里里琴型",
+        "Materials": "材料",
+        "Wood species selected by product level, tone target and market positioning": "根据产品等级、音色目标和市场定位选择木材",
+        "Hardware": "五金",
+        "Hardware finishes, pickups, electronics and setup requirements": "五金表面、拾音器、电子配置和调试要求",
+        "Branding": "品牌",
+        "Custom logo, packaging, carton, hangtag and accessory set": "定制 Logo、包装、外箱、吊牌和配件套装",
+        "Our Factory": "我们的工厂",
+                "Why Work With Us": "为什么选择我们",
+        "Why Choose Meihua Musical Instruments": "为什么选择美华乐器",
+        "Customization": "定制能力",
+        "OEM/ODM support for body shapes, wood species, hardware finishes, pickups, electronics and packaging.": "支持琴型、木材、五金表面、拾音器、电子配置和包装的 OEM/ODM 定制。",
+        "Competitive Pricing": "有竞争力的价格",
+        "Vertical integration helps reduce cost without cutting corners on tone or craftsmanship.": "垂直整合帮助控制成本，同时不牺牲音色和工艺。",
+        "Stable Supply": "稳定供货",
+        "The 40,000㎡ facility supports ample inventory planning, reliable logistics and on-time delivery.": "40,000㎡ 工厂支持充足备货、可靠物流和准时交付。",
+        "Sustainable Practices": "可持续实践",
+        "Certified tonewoods and eco-friendly finishes are used whenever possible.": "在条件允许时使用认证音木和环保漆面。",
+        "Order Information": "订单信息",
+        "Clear Starting Points for Sample and Bulk Orders": "样品和批量订单起点清晰",
+        "Sample Development": "样品开发",
+        "Reference sample, drawing, photo or specification sheet accepted. Sample details can include body shape, wood species, hardware, pickups, electronics, logo, packaging and finish.": "可根据参考样、图纸、照片或规格表开发样品，内容可包括琴型、木材、五金、拾音器、电子配置、Logo、包装和漆面。",
+        "MOQ Guide": "MOQ 说明",
+        "MOQ depends on product category, configuration, finish, packaging and customization requirements. Share your order details for confirmation.": "MOQ 根据产品类别、配置、漆面、包装和定制要求确认，请提供项目细节以便评估。",
+        "Lead Time": "交期",
+        "Sample and bulk production schedules are confirmed based on material preparation, customization complexity and order quantity.": "样品和批量生产周期根据备料、定制复杂度和订单数量确认。",
+        "Export Support": "出口支持",
+        "Private-label cartons, accessory bundles, packing list, commercial invoice and shipment coordination can be prepared for B2B orders.": "可为 B2B 订单准备贴牌包装、配件套装、装箱单、商业发票和出货协调。",
+        "Request a Quote": "获取报价",
+        "Tell Us About Your Purchasing Needs": "请写下您的采购需求",
+        "Name": "姓名",
+        "Email": "邮箱",
+        "Company": "公司",
+        "Country": "国家",
+        "Phone / WhatsApp": "电话 / WhatsApp",
+        "Body Type / Model": "琴型 / 型号",
+        "Product Interest": "感兴趣产品",
+        "Estimated Quantity": "预计数量",
+        "Target Price": "目标价格",
+        "Project Details": "采购需求详情",
+        "Submit Inquiry": "提交询盘",
+        "What to Include": "建议填写内容",
+        "Product category and body shape": "产品类别和琴型",
+        "Wood, finish, hardware and electronics": "木材、漆面、五金和电子配置",
+        "Logo, carton, accessories and packaging": "Logo、纸箱、配件和包装",
+        "Order quantity, target price and delivery date": "订单数量、目标价格和交期",
+        "Sales Contact": "销售联系",
+        "Company: Meihua Musical Instruments": "公司：美华乐器",
+        "Partner with Meihua Musical Instruments to bring exceptional guitars and ukuleles to your market.": "与美华乐器合作，把优秀的吉他和尤克里里带到您的市场。"
+      };
+      Object.assign(translations, {
+        "Product Parameters": "产品参数",
+        "Common Custom Options for Guitar Buyers": "采购商常用定制选项",
+        "Acoustic Guitars": "原声吉他",
+        "Electric Guitars": "电吉他",
+        "Ukuleles": "尤克里里",
+        "Body Shapes": "琴型",
+        "Dreadnought, OM, GA, Jumbo, Parlor, cutaway or non-cutaway": "Dreadnought、OM、GA、Jumbo、Parlor、缺角或非缺角",
+        "Wood Options": "木材选项",
+        "Spruce, cedar, mahogany, sapele, basswood and buyer-specified materials": "云杉、雪松、桃花芯、沙比利、椴木及客户指定材料",
+        "Customization": "定制内容",
+        "Rosette, binding, bridge, pickup, finish, headstock logo and label": "音孔花、包边、琴桥、拾音器、漆面、琴头 Logo 和标签",
+        "Packaging": "包装",
+        "Inner bag, color box, export carton, accessory bundle and private-label packing": "内袋、彩盒、出口外箱、配件套装和贴牌包装",
+        "ST, TL, LP, SG, Offset, semi-hollow, bass and custom body options": "ST、TL、LP、SG、Offset、半空心、贝斯及定制琴体项目",
+        "Electronics": "电子配置",
+        "SSS, HSS, HH, active or passive pickups, buyer-specified wiring options": "SSS、HSS、HH、主动或被动拾音器及客户指定线路",
+        "Bridge, tuners, knobs, pickguard, frets, neck profile and finish options": "琴桥、弦钮、旋钮、护板、品丝、琴颈手感和漆面选项",
+        "Headstock logo, neck plate, carton mark, hangtag and retail package design": "琴头 Logo、琴颈牌、外箱唛头、吊牌和零售包装设计",
+        "Sizes": "尺寸",
+        "21-inch, 23-inch and 26-inch": "21寸、23寸、26寸",
+        "Materials": "材料",
+        "Sapele, mahogany, acacia, spruce and color-finish options": "沙比利、桃花芯、相思木、云杉和颜色漆面选项",
+        "Use Cases": "适用场景",
+        "Education, promotion, retail, beginner packages and gift orders": "教育、促销、零售、初学者套装和礼品订单",
+        "Packages": "包装方案",
+        "Bag, strap, tuner, strings, color box, bulk carton or custom bundle": "琴包、背带、调音器、琴弦、彩盒、批量外箱或定制套装",
+        "Meihua Musical Instruments is a professional musical instrument factory focused on acoustic guitars, electric guitars and ukuleles. We serve overseas distributors, brand owners, online sellers, education suppliers and retail channels that need stable quality and practical customization support.": "美华乐器是一家专注于木吉他、电吉他和尤克里里的专业乐器工厂，服务海外经销商、品牌商、电商卖家、教育供应商和零售渠道，为客户提供稳定品质和实用定制支持。",
+        "Meihua Musical Instruments is a professional musical instrument factory located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base. With 18 years of OEM manufacturing experience, we focus on acoustic guitars, electric guitars and ukuleles for overseas distributors, brand owners, online sellers, education suppliers and retail channels.": "美华乐器是一家位于贵州省正安县的专业乐器工厂，正安县是全球最大的乐器生产基地。我们拥有18年代工经验，专注于为海外经销商、品牌商、电商卖家、教育供应商和零售订单生产木吉他、电吉他和尤克里里。",
+        "Our factory supports OEM and ODM service for body shapes, wood species, hardware finishes, pickups, electronics, custom packaging and private-label requirements. Buyers can start from an existing model, a reference sample, a photo, a drawing or a specification sheet.": "工厂支持 OEM/ODM 定制，包括琴型、木材、五金表面、拾音器、电子配置、定制包装和贴牌需求。客户可以从现有型号、参考样品、照片、图纸或规格表开始沟通。",
+        "For every new project, our sales and production team reviews the target market, expected quantity, target price, package requirement and delivery schedule before confirming a workable sample plan.": "每个新项目开始前，我们的销售和生产团队会评估目标市场、预计数量、目标价格、包装要求和交期，再确认可执行的打样方案。",
+        "Years of OEM manufacturing experience": "年代工制造经验",
+        "Guizhou Province, the world's largest musical instrument production base": "贵州省，全球最大的乐器生产基地",
+        "Watch our workshop environment, production flow, material handling and packing preparation. This video helps buyers understand our manufacturing setting before discussing samples, customization and bulk orders.": "通过视频了解我们的车间环境、生产流程、材料处理和包装准备，帮助采购商在沟通样品、定制和批量订单前认识工厂。",
+        "Instrument assembly, inspection and handling": "乐器装配、检查和处理",
+        "Packing preparation for export orders": "出口订单包装准备",
+        "Useful reference for OEM/ODM buyers before placing sample orders": "OEM/ODM 客户下样品单前的参考",
+        "Inspection Points Before Shipment": "出货前检查重点",
+        "Material Check": "材料检查",
+        "Wood stability, moisture condition, visible defects and key component matching are reviewed before production.": "生产前检查木材稳定性、含水状态、明显瑕疵和关键部件匹配情况。",
+        "Structure Check": "结构检查",
+        "Neck joint, bridge position, body assembly, fretwork and hardware installation are checked during production.": "生产过程中检查琴颈结合、琴桥位置、琴体装配、品丝和五金安装。",
+        "Playability Setup": "手感调试",
+        "String height, intonation, fret buzz, neck relief and tuning stability are adjusted before packing.": "包装前调整弦高、音准、打品、琴颈弧度和调音稳定性。",
+        "Electronics Test": "电子测试",
+        "Electric guitars and pickup-equipped acoustic guitars are tested for output, noise, switching and control response.": "电吉他和带拾音器木吉他会测试输出、噪音、切换和控制响应。",
+        "Appearance Review": "外观检查",
+        "Finish, color, logo placement, binding, rosette, scratches and visible surface details are inspected.": "检查漆面、颜色、Logo 位置、包边、音孔花、划痕和可见表面细节。",
+        "Packing Check": "包装检查",
+        "Accessories, labels, cartons, protection material and shipping marks are checked according to buyer requirements.": "根据客户要求检查配件、标签、外箱、防护材料和唛头。",
+        "MOQ depends on product category, configuration, finish, packaging and customization requirements. As a guide, buyers can start with trial orders and confirm exact MOQ after specifications are reviewed.": "MOQ 根据产品类别、配置、漆面、包装和定制要求确认。客户可先从试单沟通开始，具体 MOQ 在规格评估后确认。",
+        "Sample lead time is usually confirmed after specifications are fixed. Bulk production schedules depend on material preparation, customization complexity and order quantity.": "样品周期通常在规格确定后确认；批量生产周期取决于备料、定制复杂度和订单数量。",
+        "Before Quotation": "报价前请提供",
+        "Please send product category, body shape, wood or material level, hardware/electronics requirement, logo and package details, order quantity, target price and delivery destination. Clear information helps us quote faster and avoid wrong sample direction.": "请提供产品类别、琴型、木材或材料等级、五金/电子要求、Logo 和包装细节、订单数量、目标价格和交货目的地。信息越清楚，报价越快，也能避免样品方向错误。"
+      });
+      const placeholderTranslations = {
+        "ST, TL, LP, Dreadnought, OM, 21寸...": "ST、TL、LP、Dreadnought、OM、21寸...",
+        "Example: 100 pcs": "例如：100 把",
+        "Optional": "选填",
+        "Please share product type, body shape, wood, hardware, color, logo, packaging, quantity, target price and delivery requirements.": "请写下产品类型、琴型、木材、五金、颜色、Logo、包装、数量、目标价格和交期要求。"
+      };
+
+      function translateTextNode(node, language) {
+        if (!originalText.has(node)) {
+          originalText.set(node, node.nodeValue);
+        }
+        const source = originalText.get(node);
+        if (language === "en") {
+          node.nodeValue = source;
+          return;
+        }
+        const trimmed = source.trim();
+        const translated = translations[trimmed];
+        if (!translated) return;
+        node.nodeValue = source.replace(trimmed, translated);
+      }
+
+      function setLanguage(language) {
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+        document.body.dataset.lang = language;
+        languageButtons.forEach((button) => {
+          button.classList.toggle("active", button.dataset.language === language);
+        });
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            const parentTag = node.parentElement?.tagName;
+            if (!node.nodeValue.trim() || ["SCRIPT", "STYLE", "TEXTAREA"].includes(parentTag)) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        });
+        while (walker.nextNode()) {
+          translateTextNode(walker.currentNode, language);
+        }
+
+        document.querySelectorAll("[placeholder]").forEach((input) => {
+          if (!input.dataset.placeholderEn) {
+            input.dataset.placeholderEn = input.getAttribute("placeholder");
+          }
+          const source = input.dataset.placeholderEn;
+          input.setAttribute("placeholder", language === "zh" ? placeholderTranslations[source] || source : source);
+        });
+      }
+
+      languageButtons.forEach((button) => {
+        button.addEventListener("click", () => setLanguage(button.dataset.language));
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        statusNode.textContent = "Sending...";
+        const response = await fetch("/api/inquiries", {
+          method: "POST",
+          body: new FormData(form),
+        });
+        const result = await response.json();
+        statusNode.textContent = result.message;
+        if (result.ok) {
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>

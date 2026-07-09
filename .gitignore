@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.venv/
+.cache/
+.pycache/
+__pycache__/
+*.pyc
+output/
+backups/
+factory_site/data/
