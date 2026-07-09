@@ -5,8 +5,3 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn factory_site.app:app --bind 0.0.0.0:$PORT
-    envVars:
-      - key: FACTORY_ADMIN_PASSWORD
-        sync: false
-      - key: FACTORY_SITE_SECRET
-        sync: false
