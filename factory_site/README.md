@@ -72,16 +72,17 @@ Or a hashed password:
 export FACTORY_ADMIN_PASSWORD_HASH="pbkdf2:sha256:..."
 ```
 
-For live email alerts, connect the inquiry form to Resend, SendGrid, Mailgun, or your company email service.
+For live email alerts, the site is preconfigured for Gmail alerts to `besttone188@gmail.com`.
+Create a Gmail app password, then add it to Render as `FACTORY_SMTP_PASSWORD`.
 
 Optional SMTP email alert environment variables:
 
 ```bash
-export FACTORY_ALERT_EMAIL="your-sales-email@example.com"
-export FACTORY_SMTP_HOST="smtp.example.com"
+export FACTORY_ALERT_EMAIL="besttone188@gmail.com"
+export FACTORY_SMTP_HOST="smtp.gmail.com"
 export FACTORY_SMTP_PORT="587"
-export FACTORY_SMTP_USER="smtp-user@example.com"
-export FACTORY_SMTP_PASSWORD="smtp-password"
+export FACTORY_SMTP_USER="besttone188@gmail.com"
+export FACTORY_SMTP_PASSWORD="gmail-app-password"
 ```
 
 ## Simple Online Deployment

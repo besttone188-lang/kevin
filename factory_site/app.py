@@ -109,20 +109,26 @@ def save_inquiry(payload: dict[str, str]) -> None:
 
 
 def send_inquiry_alert(inquiry: dict[str, str]) -> None:
-    smtp_host = os.environ.get("FACTORY_SMTP_HOST")
-    smtp_user = os.environ.get("FACTORY_SMTP_USER")
+    smtp_host = os.environ.get("FACTORY_SMTP_HOST", "smtp.gmail.com")
+    smtp_user = os.environ.get("FACTORY_SMTP_USER", "besttone188@gmail.com")
     smtp_password = os.environ.get("FACTORY_SMTP_PASSWORD")
-    alert_to = os.environ.get("FACTORY_ALERT_EMAIL")
+    alert_to = os.environ.get("FACTORY_ALERT_EMAIL", "besttone188@gmail.com")
     if not all([smtp_host, smtp_user, smtp_password, alert_to]):
         return
 
     message = EmailMessage()
-    message["Subject"] = f"New inquiry from {inquiry['company']}"
+    product = inquiry.get("product_interest", "Product")
+    company = inquiry.get("company", "Unknown company")
+    message["Subject"] = f"New Meihua inquiry: {product} from {company}"
     message["From"] = smtp_user
     message["To"] = alert_to
+    if inquiry.get("email"):
+        message["Reply-To"] = inquiry["email"]
     message.set_content(
         "\n".join(
             [
+                "A new purchase requirement was submitted on meihuamusical.com.",
+                "",
                 f"Name: {inquiry['name']}",
                 f"Email: {inquiry['email']}",
                 f"Company: {inquiry['company']}",
@@ -133,7 +139,10 @@ def send_inquiry_alert(inquiry: dict[str, str]) -> None:
                 f"Quantity: {inquiry['quantity']}",
                 f"Target Price: {inquiry['target_price']}",
                 "",
+                "Purchase Requirement:",
                 inquiry["message"],
+                "",
+                "Admin: https://meihuamusical.com/admin?password=666888",
             ]
         )
     )
