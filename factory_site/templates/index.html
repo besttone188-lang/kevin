@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meihua Musical Instruments | OEM Guitar & Ukulele Factory</title>
     <meta name="description" content="Meihua Musical Instruments manufactures acoustic guitars, electric guitars and ukuleles from a 40,000-square-meter facility with OEM/ODM customization and quality control.">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ asset_url('styles.css') }}">
   </head>
   <body data-lang="en">
     <header class="site-header">
@@ -29,7 +29,7 @@
 
     <main id="top">
       <section class="hero">
-        <img src="{{ url_for('static', filename='images/hero-workshop.png') }}" alt="Electric guitar, acoustic guitar and ukulele in a guitar factory workshop">
+        <img src="{{ asset_url('images/hero-workshop.png') }}" alt="Electric guitar, acoustic guitar and ukulele in a guitar factory workshop">
         <div class="hero-overlay">
           <p class="eyebrow">Meihua Musical Instruments</p>
           <h1>Professional OEM Services for Global Musical Instrument Brands</h1>
@@ -75,7 +75,7 @@
         <div class="product-grid">
           {% for line in product_lines %}
             <article class="product-card">
-              <img class="product-photo" src="{{ url_for('static', filename=line.image) }}" alt="{{ line.name }} OEM product options">
+              <img class="product-photo" src="{{ asset_url(line.image) }}" alt="{{ line.name }} OEM product options">
               <div class="product-body">
                 <h3>{{ line.name }}</h3>
                 <p>{{ line.description }}</p>
@@ -159,8 +159,8 @@
           <a class="button secondary-button" href="#inquiry">Discuss Your Order</a>
         </div>
         <div class="video-layout">
-          <video class="factory-video" controls preload="metadata" poster="{{ url_for('static', filename='images/factory-video-poster.png') }}">
-            <source src="{{ url_for('static', filename='videos/factory.mp4') }}" type="video/mp4">
+          <video class="factory-video" controls preload="metadata" poster="{{ asset_url('images/factory-video-poster.png') }}">
+            <source src="{{ asset_url('videos/factory.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           <div class="video-copy">
@@ -328,7 +328,7 @@
                   {% for line in product_lines %}
                     <label class="product-choice">
                       <input name="product_interest" type="radio" value="{{ line.name }}" required>
-                      <img src="{{ url_for('static', filename=line.image) }}" alt="{{ line.name }} product photo">
+                      <img src="{{ asset_url(line.image) }}" alt="{{ line.name }} product photo">
                       <span>{{ line.name }}</span>
                     </label>
                   {% endfor %}

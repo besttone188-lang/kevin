@@ -20,6 +20,7 @@ INQUIRY_JSONL = DATA_DIR / "inquiries.jsonl"
 INQUIRY_CSV = DATA_DIR / "inquiries.csv"
 INQUIRY_STATUSES = ["New", "Contacted", "Quoted", "Sample Sent", "Order Won", "No Fit"]
 DEFAULT_ADMIN_PASSWORD_HASH = "pbkdf2:sha256:260000$chNoEjBH8kiAsije$c290c0bdf9ff00f8f947468ba64490729f0e445e3af7fac4d6be28bee1c5324a"
+DEFAULT_STATIC_ORIGIN = "https://meihua-musical-instruments.onrender.com"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("FACTORY_SITE_SECRET", "local-factory-site")
@@ -161,6 +162,20 @@ def is_admin_password(password: str) -> bool:
         return password == configured_password
     configured_hash = os.environ.get("FACTORY_ADMIN_PASSWORD_HASH", DEFAULT_ADMIN_PASSWORD_HASH)
     return check_password_hash(configured_hash, password)
+
+
+def asset_url(filename: str) -> str:
+    static_origin = os.environ.get("FACTORY_STATIC_ORIGIN", "").rstrip("/")
+    if not static_origin and request.host in {"meihuamusical.com", "www.meihuamusical.com"}:
+        static_origin = DEFAULT_STATIC_ORIGIN
+    if static_origin:
+        return f"{static_origin}/static/{filename.lstrip('/')}"
+    return url_for("static", filename=filename)
+
+
+@app.context_processor
+def inject_asset_url():
+    return {"asset_url": asset_url}
 
 
 @app.get("/")
