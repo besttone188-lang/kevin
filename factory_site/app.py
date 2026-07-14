@@ -11,6 +11,7 @@ from io import BytesIO, StringIO
 
 from flask import Flask, jsonify, redirect, render_template, request, send_file, url_for
 from openpyxl import Workbook
+from werkzeug.security import check_password_hash
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -18,6 +19,7 @@ DATA_DIR = BASE_DIR / "data"
 INQUIRY_JSONL = DATA_DIR / "inquiries.jsonl"
 INQUIRY_CSV = DATA_DIR / "inquiries.csv"
 INQUIRY_STATUSES = ["New", "Contacted", "Quoted", "Sample Sent", "Order Won", "No Fit"]
+DEFAULT_ADMIN_PASSWORD_HASH = "pbkdf2:sha256:260000$x6MKQv4qQnUKuyk6$2891cf71cadccb01f558f71b615e34c4121c78a1cbd5ffb71b36063efb19fee9"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("FACTORY_SITE_SECRET", "local-factory-site")
@@ -142,6 +144,14 @@ def send_inquiry_alert(inquiry: dict[str, str]) -> None:
         smtp.send_message(message)
 
 
+def is_admin_password(password: str) -> bool:
+    configured_password = os.environ.get("FACTORY_ADMIN_PASSWORD")
+    if configured_password:
+        return password == configured_password
+    configured_hash = os.environ.get("FACTORY_ADMIN_PASSWORD_HASH", DEFAULT_ADMIN_PASSWORD_HASH)
+    return check_password_hash(configured_hash, password)
+
+
 @app.get("/")
 def home():
     return render_template("index.html", product_lines=PRODUCT_LINES)
@@ -184,8 +194,7 @@ def create_inquiry():
 @app.get("/admin")
 def admin():
     password = request.args.get("password", "")
-    expected_password = os.environ.get("FACTORY_ADMIN_PASSWORD", "factory-admin")
-    authorized = password == expected_password
+    authorized = is_admin_password(password)
     rows = read_inquiries()
     status_filter = request.args.get("status", "")
     if status_filter:
@@ -203,8 +212,7 @@ def admin():
 @app.post("/admin/inquiries/<inquiry_id_value>")
 def update_inquiry(inquiry_id_value: str):
     password = request.form.get("password", "")
-    expected_password = os.environ.get("FACTORY_ADMIN_PASSWORD", "factory-admin")
-    if password != expected_password:
+    if not is_admin_password(password):
         return redirect(url_for("admin"))
 
     rows = read_inquiries()
@@ -222,8 +230,7 @@ def update_inquiry(inquiry_id_value: str):
 @app.get("/admin/export/<kind>")
 def export_inquiries(kind: str):
     password = request.args.get("password", "")
-    expected_password = os.environ.get("FACTORY_ADMIN_PASSWORD", "factory-admin")
-    if password != expected_password:
+    if not is_admin_password(password):
         return redirect(url_for("admin"))
 
     rows = read_inquiries()

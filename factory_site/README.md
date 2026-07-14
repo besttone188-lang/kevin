@@ -31,7 +31,7 @@ FACTORY_SITE_HOST=0.0.0.0 FACTORY_SITE_PORT=5080 .venv/bin/python factory_site/a
 Admin lead follow-up backend:
 
 ```text
-http://127.0.0.1:5080/admin?password=factory-admin
+http://127.0.0.1:5080/admin?password=your-admin-password
 ```
 
 Submitted inquiries are saved to:
@@ -60,10 +60,16 @@ The backend supports:
 
 ## Production Notes
 
-Set a stronger admin password before deployment:
+Set a stronger admin password before deployment. The app supports either a plain environment variable:
 
 ```bash
 export FACTORY_ADMIN_PASSWORD="your-strong-password"
+```
+
+Or a hashed password:
+
+```bash
+export FACTORY_ADMIN_PASSWORD_HASH="pbkdf2:sha256:..."
 ```
 
 For live email alerts, connect the inquiry form to Resend, SendGrid, Mailgun, or your company email service.
