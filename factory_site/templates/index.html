@@ -25,6 +25,7 @@
         <button class="active" type="button" data-language="en">EN</button>
         <button type="button" data-language="zh">中文</button>
       </div>
+      <a class="header-cta" href="#inquiry">Request Quote</a>
     </header>
 
     <main id="top">
@@ -32,6 +33,7 @@
         <img src="{{ asset_url('images/hero-workshop.png') }}" alt="Electric guitar, acoustic guitar and ukulele in a guitar factory workshop">
         <div class="hero-overlay">
           <p class="eyebrow">Meihua Musical Instruments</p>
+          <p class="hero-kicker">OEM / ODM Guitar Manufacturing Partner</p>
           <h1>Professional OEM Services for Global Musical Instrument Brands</h1>
           <p class="hero-copy">With 18 years of OEM manufacturing experience, Meihua Musical Instruments is located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base, providing acoustic guitar, electric guitar and ukulele manufacturing services for overseas brands.</p>
           <div class="hero-actions">
@@ -45,6 +47,15 @@
             <span>Zheng'an County, Guizhou Province</span>
           </div>
         </div>
+        <aside class="hero-panel" aria-label="OEM service snapshot">
+          <span>For Brand Buyers</span>
+          <strong>From sample brief to repeat production</strong>
+          <dl>
+            <div><dt>Products</dt><dd>Acoustic, electric, ukulele</dd></div>
+            <div><dt>Support</dt><dd>Logo, specs, packing, export</dd></div>
+            <div><dt>Focus</dt><dd>Stable quality and practical cost</dd></div>
+          </dl>
+        </aside>
       </section>
 
       <section class="proof-strip" aria-label="Factory highlights">
@@ -75,7 +86,10 @@
         <div class="product-grid">
           {% for line in product_lines %}
             <article class="product-card">
-              <img class="product-photo" src="{{ asset_url(line.image) }}" alt="{{ line.name }} OEM product options">
+              <div class="product-media">
+                <img class="product-photo" src="{{ asset_url(line.image) }}" alt="{{ line.name }} OEM product options">
+                <span>OEM Ready</span>
+              </div>
               <div class="product-body">
                 <h3>{{ line.name }}</h3>
                 <p>{{ line.description }}</p>
@@ -105,6 +119,22 @@
           <article><span>02</span><strong>Materials</strong><p>Spruce, cedar, mahogany, sapele, basswood, acacia and buyer-specified material levels.</p></article>
           <article><span>03</span><strong>Hardware & Electronics</strong><p>Pickups, wiring, tuners, bridge, control layout, hardware finish and accessory configuration.</p></article>
           <article><span>04</span><strong>Branding & Packing</strong><p>Headstock logo, label, hangtag, color box, carton mark, accessory bundle and export packing.</p></article>
+        </div>
+      </section>
+
+      <section class="section buyer-section">
+        <div class="buyer-card">
+          <div>
+            <p class="eyebrow">Buyer Confidence</p>
+            <h2>Built for Overseas Brand Orders</h2>
+            <p>We help buyers turn product ideas into manufacturable specifications, then support sample confirmation, production planning, inspection and export packing for repeat orders.</p>
+          </div>
+          <div class="buyer-checks">
+            <span>Specification review before sampling</span>
+            <span>Cost target and material level discussion</span>
+            <span>Logo, package and accessory coordination</span>
+            <span>Final setup, packing and shipment support</span>
+          </div>
         </div>
       </section>
 
@@ -294,6 +324,14 @@
         </div>
       </section>
 
+      <section class="quote-cta">
+        <div>
+          <p class="eyebrow">Start the Project</p>
+          <h2>Send Your Purchase Requirement and We Will Review the Best Production Route</h2>
+        </div>
+        <a class="button light" href="#inquiry">Send Requirement</a>
+      </section>
+
       <section id="inquiry" class="section inquiry-section">
         <div class="section-head">
           <p class="eyebrow">Request a Quote</p>
@@ -384,7 +422,9 @@
         "Quality": "质量",
         "Order Info": "订单信息",
         "Inquiry": "询盘",
+        "Request Quote": "获取报价",
         "Meihua Musical Instruments": "美华乐器",
+        "OEM / ODM Guitar Manufacturing Partner": "OEM / ODM 吉他制造合作伙伴",
         "Professional OEM Services for Global Musical Instrument Brands": "为全球乐器品牌提供专业的代工服务",
         "With 18 years of OEM manufacturing experience, Meihua Musical Instruments is located in Zheng'an County, Guizhou Province, the world's largest musical instrument production base, providing acoustic guitar, electric guitar and ukulele manufacturing services for overseas brands.": "美华乐器拥有18年代工经验，位于贵州省正安县——全球最大的乐器生产基地，为海外品牌提供木吉他、电吉他和尤克里里代工服务。",
         "Send Inquiry": "发送询盘",
@@ -393,6 +433,13 @@
         "20,000-30,000 Guitars / Month": "每月2-3万只吉他",
         "40,000㎡ Facility": "40,000㎡ 工厂",
         "Zheng'an County, Guizhou Province": "贵州省正安县",
+        "For Brand Buyers": "面向品牌采购商",
+        "From sample brief to repeat production": "从样品需求到复购量产",
+        "Acoustic, electric, ukulele": "木吉他、电吉他、尤克里里",
+        "Support": "支持",
+        "Logo, specs, packing, export": "Logo、规格、包装、出口",
+        "Focus": "重点",
+        "Stable quality and practical cost": "稳定品质与务实成本",
         "OEM / ODM Customization": "OEM / ODM 定制",
         "Monthly Volume Production": "月度批量生产",
         "Long-term production support for overseas guitar and ukulele brand orders": "长期服务海外吉他和尤克里里品牌代工订单",
@@ -424,6 +471,7 @@
         "Traditional or contemporary styling": "传统或现代风格",
         "Logo, color and accessory bundle options": "Logo、颜色和配件套装选项",
         "Retail box or bulk carton packing": "零售彩盒或批量外箱包装",
+        "OEM Ready": "支持代工",
                 "Start a Custom Request": "开始定制询盘",
         "Electric Guitar Bodies": "电吉他琴型",
         "Acoustic Guitar Bodies": "木吉他琴型",
@@ -514,6 +562,9 @@
         "Sample and bulk production schedules are confirmed based on material preparation, customization complexity and order quantity.": "样品和批量生产周期根据备料、定制复杂度和订单数量确认。",
         "Export Support": "出口支持",
         "Private-label cartons, accessory bundles, packing list, commercial invoice and shipment coordination can be prepared for B2B orders.": "可为 B2B 订单准备贴牌包装、配件套装、装箱单、商业发票和出货协调。",
+        "Start the Project": "开始项目",
+        "Send Your Purchase Requirement and We Will Review the Best Production Route": "发送采购需求，我们会评估合适的生产方案",
+        "Send Requirement": "发送需求",
         "Request a Quote": "获取报价",
         "Tell Us About Your Purchasing Needs": "请写下您的采购需求",
         "Share the key order information once. We will use it to review model direction, configuration, target cost and sample feasibility.": "请一次性提供关键订单信息，我们会据此评估型号方向、配置、目标成本和打样可行性。",
@@ -547,6 +598,13 @@
         "Pickups, wiring, tuners, bridge, control layout, hardware finish and accessory configuration.": "拾音器、线路、弦钮、琴桥、控制布局、五金表面和配件配置。",
         "Branding & Packing": "品牌与包装",
         "Headstock logo, label, hangtag, color box, carton mark, accessory bundle and export packing.": "琴头 Logo、标签、吊牌、彩盒、外箱唛头、配件套装和出口包装。",
+        "Buyer Confidence": "采购信任",
+        "Built for Overseas Brand Orders": "为海外品牌订单而打造",
+        "We help buyers turn product ideas into manufacturable specifications, then support sample confirmation, production planning, inspection and export packing for repeat orders.": "我们帮助客户把产品想法转化为可生产规格，并支持样品确认、生产排期、检验和复购订单的出口包装。",
+        "Specification review before sampling": "打样前评估规格",
+        "Cost target and material level discussion": "沟通目标成本和材料等级",
+        "Logo, package and accessory coordination": "协调 Logo、包装和配件",
+        "Final setup, packing and shipment support": "最终调试、包装和出货支持",
         "Product Parameters": "产品参数",
         "Common Custom Options for Guitar Buyers": "采购商常用定制选项",
         "Acoustic Guitars": "原声吉他",
