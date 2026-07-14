@@ -19,7 +19,7 @@ DATA_DIR = BASE_DIR / "data"
 INQUIRY_JSONL = DATA_DIR / "inquiries.jsonl"
 INQUIRY_CSV = DATA_DIR / "inquiries.csv"
 INQUIRY_STATUSES = ["New", "Contacted", "Quoted", "Sample Sent", "Order Won", "No Fit"]
-DEFAULT_ADMIN_PASSWORD_HASH = "pbkdf2:sha256:260000$x6MKQv4qQnUKuyk6$2891cf71cadccb01f558f71b615e34c4121c78a1cbd5ffb71b36063efb19fee9"
+DEFAULT_ADMIN_PASSWORD_HASH = "pbkdf2:sha256:260000$chNoEjBH8kiAsije$c290c0bdf9ff00f8f947468ba64490729f0e445e3af7fac4d6be28bee1c5324a"
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("FACTORY_SITE_SECRET", "local-factory-site")
